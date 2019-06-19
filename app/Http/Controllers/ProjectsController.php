@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Project;
 use App\Mail\ProjectCreatedMail;
+use App\Events\ProjectCreated;
 
 class ProjectsController extends Controller
 {
@@ -41,9 +42,11 @@ class ProjectsController extends Controller
 
         $project = Project::create($attributes);
 
-        \Mail::to('sustained.dissonance+laravel@gmail.com')->send(
-            new ProjectCreatedMail($project)
-        );
+        // event(new ProjectCreated($project));
+
+        // \Mail::to('sustained.dissonance+laravel@gmail.com')->send(
+        //     new ProjectCreatedMail($project)
+        // );
 
         return redirect('/projects');
     }
