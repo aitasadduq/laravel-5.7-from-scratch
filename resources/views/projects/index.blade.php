@@ -1,12 +1,13 @@
-@extends('layouts.main')
+{{-- @extends('layouts.main') --}}
+@extends('layouts.app')
 
-@section('title', 'View Projects')
+{{-- @section('title', 'View Projects') --}}
 
 @section('content')
-
-    <ul>
-        <li><a href="/projects/create">Create a New Project</a>
-    </ul>
+    {{-- <div class="container"> --}}
+        {{-- <ul>
+            <li><a href="/projects/create">Create a New Project</a></li>
+        </ul> --}}
 
     <hr />
 
@@ -14,7 +15,7 @@
 
     <hr />
 
-    <ul>
+    <ul style="list-style: none">
 
     @foreach($projects as $project)
 
@@ -24,4 +25,6 @@
 
     </ul>
 
+    <a href="/projects/create" class="btn btn-primary">Create a New Project</a>
+    {{-- </div> --}}
 @endsection

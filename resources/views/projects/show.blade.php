@@ -1,6 +1,6 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
-@section('title', 'View Project')
+{{-- @section('title', 'View Project') --}}
 
 @push('inline-styles')
 ul#project-tasks {
@@ -12,10 +12,6 @@ li.completed label {
 @endpush
 
 @section('content')
-
-    <ul>
-        <li><a href="/projects/{{ $project->id }}/edit">Edit Project</a>
-    </ul>
 
     <hr />
 
@@ -35,7 +31,7 @@ li.completed label {
 
         <h3>Tasks</h3>
 
-        <ul id="project-tasks">
+        <ul id="project-tasks" style="list-style: none">
 
         @foreach($project->tasks as $task)
 
@@ -57,18 +53,26 @@ li.completed label {
 
     @endif
 
-    <h4>Add Task</h4>
+    {{-- <h4>Add Task</h4> --}}
+    <a class="btn btn-primary" href="/projects/{{ $project->id }}/edit">Edit Project</a>
 
-    <form action="/projects/{{ $project->id }}/tasks" method="POST">
-        @csrf
+    <br><br>
 
-        <div>
-            <input type="text" name="description" />
+    <div class="card">
+        <div class="card-header">Add Task</div>
+        <div class="card-body">
+            <form action="/projects/{{ $project->id }}/tasks" method="POST">
+                @csrf
+
+                <div>
+                    <input class="form-control" type="text" name="description" />
+                </div>
+                <br>
+                <div>
+                    <button class="btn btn-primary" type="submit">Add Task</button>
+                </div>
+            </form>
         </div>
-
-        <div>
-            <button class="create" type="submit">Add Task</button>
-        </div>
-    </form>
+    </div>
 
 @endsection
